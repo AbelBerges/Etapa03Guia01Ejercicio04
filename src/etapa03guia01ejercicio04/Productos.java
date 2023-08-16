@@ -10,8 +10,8 @@ import java.util.Objects;
  *
  * @author kalema
  */
-//public class Productos implements Comparable<Productos>{
-public class Productos {
+public class Productos implements Comparable<Productos>{
+//public class Productos {
     private Integer codigo;
     private String marca;
     private String descripcion;
@@ -28,6 +28,10 @@ public class Productos {
         this.rubro = rubro;
     }
     
+    public Productos(Categoria rubro){
+        this.rubro=rubro;
+        
+    }
     
     public Productos(){
     }
@@ -79,17 +83,22 @@ public class Productos {
     public void setRubro(Categoria rubro){
         this.rubro = rubro;
     }
+    
+    @Override
+    public String toString(){
+        return rubro.name();
+    }
 
-//    @Override
-//    public int compareTo(Productos t) {
-//      if(Objects.equals(codigo, t.getCodigo())){
-//          return 0;
-//      }else if(codigo > t.getCodigo()){
-//          return 1;
-//      }else{
-//          return -1;
-//      }
-//    }
+    @Override
+    public int compareTo(Productos t) {
+      if(Objects.equals(codigo, t.getCodigo())){
+          return 0;
+      }else if(codigo > t.getCodigo()){
+          return 1;
+      }else{
+          return -1;
+      }
+    }
     
     
 }

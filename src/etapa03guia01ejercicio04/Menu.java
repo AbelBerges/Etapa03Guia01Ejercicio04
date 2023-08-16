@@ -12,14 +12,14 @@ import java.util.TreeSet;
  * @author kalema
  */
 public class Menu extends javax.swing.JFrame {
-//public static TreeSet<Productos> listado=new TreeSet<>();
-public static ArrayList<Productos> listado=new ArrayList();
+public static TreeSet<Productos> listado=new TreeSet<>();
+//public static ArrayList<Productos> listado=new ArrayList();
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
-        cargoProductos();
+        //cargoProductos();
     }
 
     /**
@@ -46,16 +46,21 @@ public static ArrayList<Productos> listado=new ArrayList();
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 850, Short.MAX_VALUE)
+            .addGap(0, 943, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 427, Short.MAX_VALUE)
+            .addGap(0, 495, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Administración");
 
         jItemProductos.setText("Productos");
+        jItemProductos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jItemProductosActionPerformed(evt);
+            }
+        });
         jMenu1.add(jItemProductos);
 
         jMenuBar1.add(jMenu1);
@@ -94,11 +99,15 @@ public static ArrayList<Productos> listado=new ArrayList();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(escritorio)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -133,6 +142,15 @@ public static ArrayList<Productos> listado=new ArrayList();
         escritorio.add(buscoPrecio);
         escritorio.moveToFront(buscoPrecio);
     }//GEN-LAST:event_jitemPrecioActionPerformed
+
+    private void jItemProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jItemProductosActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        CargaProductos cargo=new CargaProductos();
+        cargo.setVisible(true);
+        escritorio.add(cargo);
+        escritorio.moveToFront(cargo);
+    }//GEN-LAST:event_jItemProductosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,11 +198,16 @@ public static ArrayList<Productos> listado=new ArrayList();
     private javax.swing.JMenuItem jitemRubro;
     // End of variables declaration//GEN-END:variables
 
-public static void cargoProductos(){
+public static void cargoProductos(int codigo, String marca, String descripcion, int stock, double precio, Categoria laCategoria){
+    
+    listado.add(new Productos(codigo, marca, descripcion, stock, precio, laCategoria));
+    
+    /*
     listado.add(new Productos(2150,"Ledesma","Azucar Blanco",45,1200D,Categoria.ALIMENTOS));
     listado.add(new Productos(2151,"Playadito","Yerba Mate",50,1453D,Categoria.ALIMENTOS));
     listado.add(new Productos(4021,"Samsug","Monitor LED",12,43321D,Categoria.ELECTRONICA));
     listado.add(new Productos(3321,"Levis","Pantalón Hombre",25,25228D,Categoria.ROPA));
+    */
 }
 
 
