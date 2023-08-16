@@ -202,8 +202,14 @@ private DefaultTableModel modelo=new DefaultTableModel(){
         double elPrecio=Double.valueOf(jtPrecioCarga.getText());
         Categoria laCategoria=jbtCargoCategorias.getItemAt(jbtCargoCategorias.getSelectedIndex());
         int elStock=Integer.valueOf(jtStockCarga.getText());
-        Menu.listado.add(new Productos(elCodigo, laMarca, laDescripcion, elStock, elPrecio, laCategoria));
-        
+        Productos nuevoProducto=new Productos(elCodigo, laMarca, laDescripcion, elStock, elPrecio, laCategoria);
+        Menu.listado.add(nuevoProducto);
+        armarFilas(nuevoProducto);
+        jtMarcaCarga.setText("");
+        jtCodigoCarga.setText("");
+        jtDescripcionCarga.setText("");
+        jtPrecioCarga.setText("");
+        jtStockCarga.setText("");
     }//GEN-LAST:event_jbtCargarActionPerformed
 
     private void jtCodigoCargaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtCodigoCargaFocusLost
@@ -275,5 +281,10 @@ private DefaultTableModel modelo=new DefaultTableModel(){
           jbtCargoCategorias.addItem(Categoria.ALIMENTOS);
           jbtCargoCategorias.addItem(Categoria.ELECTRONICA);
           jbtCargoCategorias.addItem(Categoria.ROPA);
-    } 
+    }
+    
+    private void armarFilas(Productos elProducto){
+        //Integer codigo, String marca, String descripcion, Integer stock, Double precio, Categoria rubro
+        modelo.addRow(new Object[]{elProducto.getCodigo(), elProducto.getMarca(), elProducto.getDescripcion(), elProducto.getPrecio(), elProducto.getRubro(), elProducto.getStock()});
+    }
 }
