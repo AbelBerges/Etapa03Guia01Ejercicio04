@@ -14,7 +14,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CargaProductos extends javax.swing.JInternalFrame {
 private DefaultTableModel modelo=new DefaultTableModel(){
-    private boolean isCellEditable(){
+    
+    
+    public boolean isCellEditable(){
         return false;
     }
 
@@ -284,7 +286,6 @@ private DefaultTableModel modelo=new DefaultTableModel(){
     }
     
     private void armarFilas(Productos elProducto){
-        //Integer codigo, String marca, String descripcion, Integer stock, Double precio, Categoria rubro
         modelo.addRow(new Object[]{elProducto.getCodigo(), elProducto.getMarca(), elProducto.getDescripcion(), elProducto.getPrecio(), elProducto.getRubro(), elProducto.getStock()});
     }
 }
